@@ -146,6 +146,7 @@ fn process_instruction_nostd(
                 sys_program_validator()?;
                 transmute(ix_accounts, args)
             }
+            // Ix::CloseAccount() ...
         }?;
     }
 

@@ -353,6 +353,13 @@ async fn end_to_end() -> Result<(), Box<dyn Error>> {
             .await?;
     assert_eq!(second_user_token_account.balance, 5);
 
+    // Close token account
+    /* let instruction = Instruction {
+        program_id: nanotoken::ID,
+        accounts,
+        data: ix_data,
+    }; */
+
     Ok(())
 }
 

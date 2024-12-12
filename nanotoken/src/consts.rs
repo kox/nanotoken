@@ -1,7 +1,7 @@
 use solana_program::pubkey::Pubkey;
 
 pub const CONFIG_ACCOUNT: Pubkey =
-    solana_program::pubkey!("CdPnCtvjY3TVQEXHYy8uyV8MNbnirpDc6En9BjAb6bS8");
+    solana_program::pubkey!("GwawbCam1mB3CnrDEZMpSUzQ4aNudCKrSACeXh29gonG");
 
 pub const MAX_PDA_INIT_ALLOC: u64 = 10240;
 

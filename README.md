@@ -3,6 +3,15 @@
 
 A zerocopy, `no_alloc` token program for solana that is highly optimized for transfers. The program supports batch invocations, allowing multiple instructions to be executed within a single program invocation. If it were to be used, this could reduce token program blockspace on mainnet from 8-10% to 1-3%.
 
+# How to test it locally
+
+1) Create a config.json keypair in the root of the project 
+`solana-keygen new -o ./config.json --force`
+
+2) Override your public key into the CONFIG_ACCOUNT value at `./src/consts.rs`
+
+3) Run `cargo test-sbf`
+
 
 # Notes/TODOs:
 # 1) Comparisons:
