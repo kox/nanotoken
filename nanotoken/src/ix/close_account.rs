@@ -6,10 +6,11 @@ use crate::{
     error::NanoTokenError, utils::split_at_unchecked, Mint, TokenAccount,
 };
 
+#[derive(PartialEq, Debug, Clone, Copy)]
 #[repr(C)]
 pub struct CloseAccountArgs {}
 
-impl BurnArgs {
+/* impl BurnArgs {
     pub fn from_data<'a>(
         data: &mut &'a [u8],
     ) -> Result<&'a BurnArgs, ProgramError> {
@@ -32,7 +33,7 @@ impl BurnArgs {
         core::mem::size_of::<Self>()
     }
 }
-
+ */
 pub fn close_account(
     accounts: &[NoStdAccountInfo],
     args: &CloseAccountArgs,
@@ -86,12 +87,15 @@ pub fn close_account(
         }
     }
 
+    /* **dest.try_borrow_mut_lamports()? += **target.try_borrow_lamports()?;
+    **target.try_borrow_mut_lamports()? = 0; */
+
     // Transfer lamports to owner
-    let target_ref = target.try_borrow_mut_lamports().expect("failed to borrow lamports from target account");
-    let dest_ref = dest.try_borrow_mut_lamports().expect("failed to borrow lamports from dest account");
+    /* let target_ref = target.try_borrow_mut_lamports().expect("failed to borrow lamports from target account");
+    let dest_ref = dest.try_borrow_mut_lamports().expect("failed to borrow lamports from dest account"); */
     
-    dest_ref += target_ref;
-    target_ref = 0;
+    /* dest_ref += target_ref;
+    target_ref = 0; */
     
     Ok(3)
 }

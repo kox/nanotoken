@@ -37,7 +37,6 @@ pub mod close_account;
 pub enum ProgramInstruction {
     /// This should run only once at the beginning of the program
     InitializeConfig(InitConfigArgs),
-
     InitializeMint(InitializeMintArgs),
     InitializeAccount(InitializeAccountArgs),
     InitializeVault(InitializeVaultArgs),
@@ -45,6 +44,7 @@ pub enum ProgramInstruction {
     Burn(BurnArgs),
     Transfer(TransferArgs),
     Transmute(TransmuteArgs),
+    CloseAccount(CloseAccountArgs),
 }
 
 impl Tag {
@@ -63,6 +63,7 @@ pub(crate) enum ProgramInstructionRef<'a> {
     Burn(&'a BurnArgs),
     Transfer(&'a TransferArgs),
     Transmute(&'a TransmuteArgs),
+    CloseAccount(&'a CloseAccountArgs),
 }
 
 pub(crate) struct InstructionIter<'a> {
@@ -128,6 +129,10 @@ impl<'a> Iterator for InstructionIter<'a> {
             x if x == Tag::Transmute as u8 => Some(
                 TransmuteArgs::from_data(&mut self.data)
                     .map(ProgramInstructionRef::Transmute),
+            ),
+
+            x if x == Tag::CloseAccount as u8 => Some(
+                Ok(ProgramInstructionRef::CloseAccount(&CloseAccountArgs {}))
             ),
 
             _ => None,

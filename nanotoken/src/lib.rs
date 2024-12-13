@@ -1,4 +1,5 @@
 #![no_std]
+#![feature(asm_experimental_arch)]
 
 use crate::solana_nostd_entrypoint::NoStdAccountInfo;
 use bytemuck::{Pod, Zeroable};
@@ -146,7 +147,10 @@ fn process_instruction_nostd(
                 sys_program_validator()?;
                 transmute(ix_accounts, args)
             }
-            // Ix::CloseAccount() ...
+            Ix::CloseAccount(args) => {
+                // don't need to validate config or sys program
+                close_account(ix_accounts, args)
+            }
         }?;
     }
 
