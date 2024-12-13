@@ -28,6 +28,9 @@ pub use init_vault::*;
 pub use transmute::*;
 pub mod transmute;
 
+pub use close_account::*;
+pub mod close_account;
+
 #[derive(PartialEq, Debug, Clone, Copy, EnumDiscriminants)]
 #[strum_discriminants(name(Tag))]
 #[repr(u64)]
